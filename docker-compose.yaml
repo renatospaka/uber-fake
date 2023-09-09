@@ -1,0 +1,30 @@
+version: "3.5"
+
+services:
+  app:
+    build: .
+    container_name: cleanarch_app
+    volumes:
+      - .:/home/node/app
+    ports:
+      - 3000:8080
+    depends_on:
+      - db
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
+  db:
+    image: postgres:13
+    container_name: cleanarch_db
+    # restart: always
+    tty: true
+    volumes:
+      - $HOME/postgres/pgdata-13:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=thisislocal#noneedtoworry
+      - POSTGRES_USER=local_dev
+      - POSTGRES_DB=cleanarch
+    ports:
+      - 5432:5432
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
