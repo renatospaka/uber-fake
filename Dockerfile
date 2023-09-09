@@ -12,7 +12,7 @@ RUN npm install npm@9.6.5 --location=global && \
     npm install nodemon --location=global
 
 COPY package*.json ./
-RUN npm install
+RUN yarn install
 
 USER node
 COPY . ./

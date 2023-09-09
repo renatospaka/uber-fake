@@ -8,3 +8,7 @@ yarn.*
 
 fontes/
 
+# Específicos do Branas
+before/
+backend/
+resources/
