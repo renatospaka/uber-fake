@@ -5,12 +5,11 @@ export default class CpfValidator {
 		cpf = this.clean(cpf); 
 		if (this.isInvalidLength(cpf)) return false;
 		if (this.allDigitsTheSame(cpf)) {
-		const dg1 = this.calculateDigit(cpf, 10); 
-		const dg2 = this.calculateDigit(cpf, 11);
-		let checkDigit = this.extractDigit(cpf);  
-		const calculatedDigit = `${dg1}${dg2}`;  
-		return checkDigit === calculatedDigit;
-			
+			const dg1 = this.calculateDigit(cpf, 10); 
+			const dg2 = this.calculateDigit(cpf, 11);
+			let checkDigit = this.extractDigit(cpf);  
+			const calculatedDigit = `${dg1}${dg2}`;  
+			return checkDigit === calculatedDigit;
 		} else return false
 	}
 

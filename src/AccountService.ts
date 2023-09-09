@@ -14,7 +14,15 @@ export default class AccountService {
 	}
 
 	async signup (input: any) {
-		const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
+		const cn = {
+			host: 'db',
+			port: 5432,
+			database: 'postgres',
+			user: 'local_dev',
+			password: 'thisislocal#noneedtoworry',
+		}
+		// const connection = pgp()("postgres://local_dev:thisislocal#noneedtoworry@db:5432");
+		const connection = pgp()(cn);
 		try {
 			const accountId = crypto.randomUUID();
 			const verificationCode = crypto.randomUUID();
@@ -36,7 +44,15 @@ export default class AccountService {
 	}
 
 	async getAccount (accountId: string) {
-		const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
+		const cn = {
+			host: 'db',
+			port: 5432,
+			database: 'postgres',
+			user: 'local_dev',
+			password: 'thisislocal#noneedtoworry',
+		}
+		// const connection = pgp()("postgres://local_dev:thisislocal#noneedtoworry@db:5432");
+		const connection = pgp()(cn);
 		const [account] = await connection.query("select * from cccat13.account where account_id = $1", [accountId]);
 		await connection.$pool.end();
 		return account;

@@ -25,6 +25,6 @@ services:
       - POSTGRES_USER=local_dev
       - POSTGRES_DB=cleanarch
     ports:
-      - 5432:5432
+      - 3010:5432
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
