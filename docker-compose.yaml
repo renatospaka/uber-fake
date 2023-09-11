@@ -1,30 +1,30 @@
-version: "3.5"
+version: "3.8"
 
 services:
   app:
     build: .
-    container_name: cleanarch_app
+    container_name: uber_like_app
     volumes:
       - .:/home/node/app
     ports:
-      - 3000:8080
+      - 3260:8080
     depends_on:
       - db
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
 
   db:
-    image: postgres:13
-    container_name: cleanarch_db
+    build: .docker/postgres
+    container_name: uber_like_db
     # restart: always
     tty: true
     volumes:
-      - $HOME/postgres/pgdata-13:/var/lib/postgresql/data
+      - $HOME/postgres/pgdata-15:/var/lib/postgresql/data
     environment:
+      - POSTGRES_DB=uber
+      - POSTGRES_USER=uber
       - POSTGRES_PASSWORD=thisislocal#noneedtoworry
-      - POSTGRES_USER=local_dev
-      - POSTGRES_DB=cleanarch
     ports:
-      - 3010:5432
+      - 3261:5432
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
